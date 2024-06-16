@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Connectez-vous !
+{% endblock %}
+
+{% block body %}
+    <div class="card shadow-sm mt-5 mx-auto" style="max-width: 400px;">
+        <div class="card-body">
+            <form method="post" class="mb-3">
+                {% if error %}
+                    <div class="alert alert-danger">
+                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                    </div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3">
+                        Vous êtes actuellement connecté en tant que
+                        {{ app.user.userIdentifier }}
+                        ,
+                        <a href="{{ path('app_logout') }}">
+                            Déconnexion
+                        </a>
+                    </div>
+                {% endif %}
+
+                <h1 class="h3 mb-3 font-weight-normal bg-primary text-white p-2 rounded">
+                    Veuillez vous connecter
+                </h1>
+
+                <div class="mb-3">
+                    <label for="username" class="form-label">
+                        Email
+                    </label>
+                    <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus></div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">
+                            Mot de passe
+                        </label>
+                        <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required></div>
+
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                            {#
+                                Débloquer cette section et ajouter une option remember_me en dessous de votre pare-feu pour activer la fonction de connexion automatique.
+                                Consultez https://symfony.com/doc/current/security/remember_me.html
+                                
+                                <div class="checkbox mb-3">
+                                <input type="checkbox" name="_remember_me" id="_remember_me">
+                                <label for="_remember_me">Se souvenir de moi</label>
+                                </div>
+                            #}
+
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">
+                                Connexion
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            {% endblock %}
+            

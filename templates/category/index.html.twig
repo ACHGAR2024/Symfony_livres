@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index des catégories{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-4">Index des catégories</h1>
+        <div class="mb-3 text-right">
+            <a href="{{ path('app_category_new') }}" class="btn btn-primary">Créer une nouvelle catégorie</a>
+        </div>
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom de la catégorie</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.categoryName }}</td>
+                    <td>
+                        <a href="{{ path('app_category_show', {'id': category.id}) }}" class="btn btn-sm btn-primary">Voir</a>
+                        <a href="{{ path('app_category_edit', {'id': category.id}) }}" class="btn btn-sm btn-secondary">Modifier</a>
+                    <a href="{{ path('app_category_delete', {'id': category.id}) }}" class="btn btn-sm btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="text-center">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}
+

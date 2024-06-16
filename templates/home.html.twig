@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<div class="container shadow-sm">
+    
+   
+
+    <form method="get" action="{{ path('home') }}" class="form-inline my-2 my-lg-0">
+        <div class="input-group" style="width: 400px;">
+            <input type="text" name="q" class=" form-control me-2" placeholder="Rechercher un livre ou un auteur" value="{{ app.request.query.get('q') }}">
+            <div class="input-group-append">
+                <button class="btn btn-secondary btn-sm" type="submit"><img data-v-67946b6c="" class="btn-search-icon" src="https://maxst.icons8.com/vue-static/icon/svg/searchWhite.svg" alt="magnifier"></button>
+           <a href="{{ path('home') }}" class="btn btn-dark"><img data-v-67946b6c="" class="btn-search-icon" src="https://img.icons8.com/?size=42&id=78572&format=png&color=ffffff" alt="Retour"></a>
+ </div>
+        </div>
+    </form>
+    
+
+    <h2 class="my-4">Catégories Livres</h2>
+    <div class="row mb-4">
+        {% for category in categories %}
+            <div class="col-md-2 mb-3 w-25h-75 card shadow p-2 m-2 rounded">
+                <a href="{{ path('category_books', {'id': category.id}) }}" class="text-decoration-none">
+                    <div class=" text-center">
+                        <img src="https://picsum.photos/100?random={{ random() }}" class="card-img-top" alt="{{ category.categoryName }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ category.categoryName }}</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <h2 class="my-4">Livres aléatoires</h2>
+    <div class="row">
+        {% if books is not empty %}
+            {% for book in books %}
+                <div class="col-md-3 center card shadow m-4">
+                    <div class=" p-2">
+                        <img src="https://picsum.photos/100?random={{ random() }}" class="card-img-top" alt="{{ book.title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ book.title }}</h5>
+                            <p class="card-text">{{ book.resume }}</p>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Auteur: {{ book.author.firstName }} {{ book.author.lastName }}
+                            <br>
+                            Catégorie: {{ book.category.categoryName }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-center">Aucun livre trouvé pour la recherche "{{ searchTerm }}".</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

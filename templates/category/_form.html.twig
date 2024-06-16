@@ -1,0 +1,10 @@
+
+    <br>
+        {{ form_start(form) }}
+        <br>
+            {{ form_widget(form, { 'attr': {'class': 'form-control'} }) }}
+            <br>
+            <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+            <br>
+        {{ form_end(form) }}
+  

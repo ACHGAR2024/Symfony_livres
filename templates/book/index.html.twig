@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index des livres{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-4">Index des livres</h1>
+        <div class="text-right"><a href="{{ path('app_book_new') }}" class="btn btn-primary mb-2">Créer un nouveau livre</a></div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Titre</th>
+                    <th>Résumé</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                    <tr>
+                        <td>{{ book.id }}</td>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.resume }}</td>
+                        <td>
+                            <a href="{{ path('app_book_show', {'id': book.id}) }}" class="btn btn-secondary btn-sm mt-1">afficher</a>
+                            <a href="{{ path('app_book_edit', {'id': book.id}) }}" class="btn btn-primary btn-sm mt-1">modifier</a>
+                       <a href="{{ path('app_book_delete', {'id': book.id}) }}" class="btn btn-danger btn-sm mt-1">supprimer</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">aucun enregistrement trouvé</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+

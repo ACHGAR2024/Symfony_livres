@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Author{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-4">Créer un nouvel auteur</h1>
+
+        <div class="card shadow-sm mt-4">
+            {{ include('author/_form.html.twig') }}
+            <br>
+        </div>
+
+        <a href="{{ path('app_author_index') }}" class="btn btn-dark mt-4">Retour</a>
+    </div>
+{% endblock %}
+

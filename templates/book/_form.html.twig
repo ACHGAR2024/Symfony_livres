@@ -1,0 +1,9 @@
+<form class="form-horizontal" method="post" role="form">
+    {{ form_errors(form) }}
+    {{ form_row(form.vars.form) }}
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+        </div>
+    </div>
+</form>

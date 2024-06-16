@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - Livres{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1 class="mb-4">Bienvenue sur notre librairie en ligne</h1>
+    
+    <!-- Section pour afficher les livres par catégorie -->
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <!-- Menu des catégories -->
+            <h3>Catégories</h3>
+            <ul class="list-unstyled">
+                {% for category in categories %}
+                <li>
+                    <a href="{{ path('category_books', {'id': category.id}) }}">{{ category.categoryName }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <div class="col-md-9">
+            <!-- Liste des livres par catégorie -->
+            <div class="row">
+                {% for book in books %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="{{ book.image }}" class="card-img-top" alt="Image du livre">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ book.title }}</h5>
+                            <p class="card-text">{{ book.author.firstName }} {{ book.author.lastName }}</p>
+                            <a href="{{ path('book_show', {'id': book.id}) }}" class="btn btn-primary">Voir détails</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

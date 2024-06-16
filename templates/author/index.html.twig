@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index des auteurs{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Index des auteurs</h1>
+    <div class="container mt-4">
+    <div class="text-right"><a href="{{ path('app_author_new') }}" class="btn btn-primary">Créer un nouvel auteur</a></div>
+    <table class="table table-striped table-bordered table-hover ">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Biographie</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for author in authors %}
+            <tr>
+                <td>{{ author.id }}</td>
+                <td>{{ author.firstName }}</td>
+                <td>{{ author.lastName }}</td>
+                <td>{{ author.biography }}</td>
+                <td>
+                    <a href="{{ path('app_author_show', {'id': author.id}) }}" class="btn btn-primary mt-1">voir</a>
+                    <a href="{{ path('app_author_edit', {'id': author.id}) }}" class="btn btn-warning mt-1">modifier</a>
+                    <a href="{{ path('app_author_delete', {'id': author.id}) }}" class="btn btn-danger mt-1">supprimer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5" class="text-center">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}
+

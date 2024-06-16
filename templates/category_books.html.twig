@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livres dans la catégorie {{ category.categoryName }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="my-2">Livres dans la catégorie {{ category.categoryName }}</h1>
+    <a href="{{ path('home') }}" class="btn btn-dark">Retour</a>
+    <div class="row">
+        {% for book in books %}
+            <div class="col-md-3 mb-4 card shadow m-1">
+                <div class="card h-100">
+                    <img src="https://picsum.photos/150?random={{ random() }}" class="card-img-top" alt="{{ book.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.title }}</h5>
+                        <p class="card-text">{{ book.resume }}</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Auteur: {{ book.author.firstName }} {{ book.author.lastName }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

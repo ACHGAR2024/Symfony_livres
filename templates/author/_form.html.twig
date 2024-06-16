@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+<div class="container">
+<br>
+    
+
+    {{ form_widget(form) }}
+    <button class="btn btn-primary mt-4 ml-5" type="submit">{{ button_label|default('Save') }}</button>
+</div>
+{{ form_end(form) }}
